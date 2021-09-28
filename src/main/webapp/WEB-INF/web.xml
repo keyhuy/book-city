@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                        http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1" metadata-complete="false">
+    <display-name>Archetype Created Web Application</display-name>
+
+    <!-- UserServlet
+        — 用户模块
+     -->
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>com.key.web.servlet.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <!-- 资源路径 -->
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- BookServlet
+        - 图书模块属于后台管理，资源路径设置成 /manager/bookServlet，方便区分其他资源
+    -->
+    <servlet>
+        <servlet-name>bookServlet</servlet-name>
+        <servlet-class>com.key.web.servlet.BookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bookServlet</servlet-name>
+        <!-- 资源路径 -->
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- ClientBookServlet
+        - 图书模块属于前台管理，资源路径设置成 /client/cBookServlet，方便区分其他资源
+    -->
+    <servlet>
+        <servlet-name>cBookServlet</servlet-name>
+        <servlet-class>com.key.web.servlet.ClientBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cBookServlet</servlet-name>
+        <!-- 资源路径 -->
+        <url-pattern>/client/cBookServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 配置谷歌验证码Servlet -->
+    <servlet>
+        <servlet-name>kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>kaptcha</servlet-name>
+        <url-pattern>/verifiedCode.jpg</url-pattern>
+    </servlet-mapping>
+
+    <!-- 购物车模块Servlet -->
+    <servlet>
+        <servlet-name>cartServlet</servlet-name>
+        <servlet-class>com.key.web.servlet.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cartServlet</servlet-name>
+        <!-- 资源路径 -->
+        <url-pattern>/cartServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 订单模块Servlet -->
+    <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>com.key.web.servlet.OrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <!-- 资源路径 -->
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- 配置后台管理过滤器 -->
+    <filter>
+        <filter-name>managerFilter</filter-name>
+        <filter-class>com.key.web.filter.ManagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>managerFilter</filter-name>
+        <url-pattern>/pages/manager/*</url-pattern>
+        <url-pattern>/manager/bookServlet</url-pattern>
+    </filter-mapping>
+
+    <!-- 配置事务管理过滤器 -->
+    <filter>
+        <filter-name>transactionFilter</filter-name>
+        <filter-class>com.key.web.filter.TransactionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>transactionFilter</filter-name>
+        <!-- 给工程下所有资源都添加过滤器 -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- 配置错误页面 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/error404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/pages/error/error500.jsp</location>
+    </error-page>
+
+</web-app>
