@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>尚硅谷会员注册页面</title>
+<title>辉记书城会员注册页面</title>
 	<%-- 使用jsp指令，引入base标签和其他资源 --%>
 	<%@ include file="/pages/common/head.jsp"%>
 
@@ -121,7 +121,7 @@
 			<div class="login_form">
 				<div class="login_box">
 					<div class="tit">
-						<h1>注册尚硅谷会员</h1>
+						<h1>注册辉记书城会员</h1>
 						<%-- 显示错误信息 --%>
 						<span class="errorMsg">
 							${requestScope.msg}
