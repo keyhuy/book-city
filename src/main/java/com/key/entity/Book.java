@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * 图书实体类
+ *  - 图书封面有默认值
  *
  * @author Key
  * @date 2021/09/12/17:28
