@@ -1,6 +1,6 @@
 package com.key.web.filter;
 
-import com.key.utils.JdbcUtil;
+import com.key.util.JdbcUtils;
 
 import javax.servlet.*;
 import java.io.IOException;
@@ -26,10 +26,10 @@ public class TransactionFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
 
             // 提交事务并释放资源
-            JdbcUtil.commitAndClose();
+            JdbcUtils.commitAndClose();
         } catch (IOException | ServletException e) {
             // 出现异常，回滚事务并释放资源
-            JdbcUtil.rollbackAndClose();
+            JdbcUtils.rollbackAndClose();
 
             e.printStackTrace();
 

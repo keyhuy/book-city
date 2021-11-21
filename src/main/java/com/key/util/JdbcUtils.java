@@ -1,4 +1,4 @@
-package com.key.utils;
+package com.key.util;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
@@ -13,7 +13,7 @@ import java.util.Properties;
  * @author Key
  * @date 2021/09/10/15:51
  **/
-public class JdbcUtil {
+public class JdbcUtils {
     private static DataSource ds;
     private static final ThreadLocal<Connection> threadLocalOfConn = new ThreadLocal<>();
 
@@ -22,7 +22,7 @@ public class JdbcUtil {
             // 创建属性文件类
             Properties pro = new Properties();
             // 将外部属性文件加载到内存
-            pro.load(JdbcUtil.class.getClassLoader().getResourceAsStream("jdbc.properties"));
+            pro.load(JdbcUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
 
             // 通过属性类对象获取数据库连接池对象，并将属性文件中各个属性注入连接池
             ds = DruidDataSourceFactory.createDataSource(pro);

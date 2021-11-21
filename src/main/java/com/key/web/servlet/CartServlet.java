@@ -7,7 +7,7 @@ import com.key.service.impl.BookServiceImpl;
 import com.key.service.impl.CartServiceImpl;
 import com.key.service.inter.BookService;
 import com.key.service.inter.CartService;
-import com.key.utils.WebUtil;
+import com.key.util.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class CartServlet extends BaseServlet {
      */
     protected void addItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取请求参数中的id值
-        int bookId = WebUtil.parseInt(req.getParameter("id"), 0);
+        int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
 
         // 2. 根据获取的id值调用BookService方法，获取对应的图书对象
         Book book = bService.queryBook(bookId);
@@ -67,7 +67,7 @@ public class CartServlet extends BaseServlet {
      */
     protected void deleteItem(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取请求参数中的id值
-        int itemId = WebUtil.parseInt(req.getParameter("id"), 0);
+        int itemId = WebUtils.parseInt(req.getParameter("id"), 0);
 
         // 2. 获取session域中的购物车对象
         Cart cart = (Cart) req.getSession().getAttribute("cart");
@@ -110,8 +110,8 @@ public class CartServlet extends BaseServlet {
      */
     protected void updateItemCount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取请求参数中的id值和更新数量值
-        int bookId = WebUtil.parseInt(req.getParameter("id"), 0);
-        int updatedCount = WebUtil.parseInt(req.getParameter("updatedCount"), 1);
+        int bookId = WebUtils.parseInt(req.getParameter("id"), 0);
+        int updatedCount = WebUtils.parseInt(req.getParameter("updatedCount"), 1);
 
         // 2. 获取session域中的购物车对象
         Cart cart = (Cart) req.getSession().getAttribute("cart");

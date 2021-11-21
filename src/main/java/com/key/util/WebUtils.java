@@ -1,4 +1,4 @@
-package com.key.utils;
+package com.key.util;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Key
  * @date 2021/09/12/16:27
  **/
-public class WebUtil {
+public class WebUtils {
 
     /**
      * 使用BeanUtils工具类注入参数到bean对象中

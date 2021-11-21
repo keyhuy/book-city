@@ -2,13 +2,10 @@ import com.key.entity.Book;
 import com.key.entity.Page;
 import com.key.service.impl.BookServiceImpl;
 import com.key.service.inter.BookService;
-import com.key.utils.WebUtil;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * 图书service测试类

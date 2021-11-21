@@ -1,6 +1,6 @@
 package com.key.dao;
 
-import com.key.utils.JdbcUtil;
+import com.key.util.JdbcUtils;
 import org.apache.commons.dbutils.*;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -30,7 +30,7 @@ public abstract class BaseDao {
 
         try {
             // 获取连接对象
-            Connection conn = JdbcUtil.getConn();
+            Connection conn = JdbcUtils.getConn();
 
             // 调用queryRunner的方法
             return queryRunner.update(conn, sql, args);
@@ -52,7 +52,7 @@ public abstract class BaseDao {
     public <T> T queryForOne(Class<T> clazz, String sql, Object ...args) {
         try {
             // 获取连接对象
-            Connection conn  = JdbcUtil.getConn();
+            Connection conn  = JdbcUtils.getConn();
 
             // 调用queryRunner对应方法，并返回结果
             return queryRunner.query(conn, sql, new BeanHandler<>(clazz), args);
@@ -74,7 +74,7 @@ public abstract class BaseDao {
     public <T>List<T> queryForList(Class<T> clazz, String sql, Object ...args) {
         try {
             // 获取连接对象
-            Connection conn = JdbcUtil.getConn();
+            Connection conn = JdbcUtils.getConn();
 
             // 调用queryRunner对应方法，并返回结果
             return queryRunner.query(conn, sql,
@@ -95,7 +95,7 @@ public abstract class BaseDao {
     public Object queryForValue(String sql, Object ...args) {
         try {
             // 获取连接对象
-            Connection conn = JdbcUtil.getConn();
+            Connection conn = JdbcUtils.getConn();
 
             // 调用对应方法
             return queryRunner.query(conn, sql, new ScalarHandler<>(), args);

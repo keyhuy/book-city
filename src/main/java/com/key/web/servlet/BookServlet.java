@@ -4,7 +4,7 @@ import com.key.entity.Book;
 import com.key.entity.Page;
 import com.key.service.impl.BookServiceImpl;
 import com.key.service.inter.BookService;
-import com.key.utils.WebUtil;
+import com.key.util.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +26,10 @@ public class BookServlet extends BaseServlet {
      */
     protected void addBook(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 获取隐藏域中的末页页码，转成int型并加一（默认值是0，因为要加1）
-        int updatePage = WebUtil.parseInt(req.getParameter("updatePage"), 0) + 1;
+        int updatePage = WebUtils.parseInt(req.getParameter("updatePage"), 0) + 1;
 
         // 1. 获取请求参数，并封装成对象
-        Book newBook = WebUtil.injectParamToBean(req.getParameterMap(), new Book());
+        Book newBook = WebUtils.injectParamToBean(req.getParameterMap(), new Book());
 
         // 2. 调用service类方法，将新的图书信息添加到数据库中
         bService.addBook(newBook);
@@ -46,7 +46,7 @@ public class BookServlet extends BaseServlet {
         String id = req.getParameter("id");
 
         // 1.1 将id转成int型，如果转化失败，返回默认值0
-        int bookId = WebUtil.parseInt(id, 0);
+        int bookId = WebUtils.parseInt(id, 0);
 
         // 2. 调用service类方法，实现删除功能
         bService.deleteBook(bookId);
@@ -62,7 +62,7 @@ public class BookServlet extends BaseServlet {
      */
     protected void updateBookInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取表单的内容，并封装成图书对象
-        Book newBook = WebUtil.injectParamToBean(req.getParameterMap(), new Book());
+        Book newBook = WebUtils.injectParamToBean(req.getParameterMap(), new Book());
 
         // 2. 调用service方法，将更新后的图书对象存储到数据库中
         bService.updateBookInfo(newBook);
@@ -78,7 +78,7 @@ public class BookServlet extends BaseServlet {
      */
     protected void getBookInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取图书id，先转成int型
-        int id = WebUtil.parseInt(req.getParameter("id"), 0);
+        int id = WebUtils.parseInt(req.getParameter("id"), 0);
 
         // 2. 根据id调用service方法，查询对应图书对象
         Book book = bService.queryBook(id);
@@ -109,8 +109,8 @@ public class BookServlet extends BaseServlet {
      */
     protected void pageBooks(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 获取请求参数 --> currentPage、pageSize，如果获取不到，就采用默认值1和4
-        int currentPage = WebUtil.parseInt(req.getParameter("currentPage"), 1);
-        int pageSize = WebUtil.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
+        int currentPage = WebUtils.parseInt(req.getParameter("currentPage"), 1);
+        int pageSize = WebUtils.parseInt(req.getParameter("pageSize"), Page.PAGE_SIZE);
 
         // 2. 根据获取的参数调用service方法，获取分页对象
         Page<Book> pageOfBook = bService.pageBooks(currentPage, pageSize);

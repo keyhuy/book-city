@@ -3,7 +3,7 @@ package com.key.web.servlet;
 import com.key.entity.User;
 import com.key.service.impl.UserServiceImpl;
 import com.key.service.inter.UserService;
-import com.key.utils.WebUtil;
+import com.key.util.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class UserServlet extends BaseServlet {
      */
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1. 通过工具类获取请求参数
-        User user = WebUtil.injectParamToBean(req.getParameterMap(), new User());
+        User user = WebUtils.injectParamToBean(req.getParameterMap(), new User());
         String username = user.getUsername();
         String password = user.getPassword();
 
@@ -80,7 +80,7 @@ public class UserServlet extends BaseServlet {
 
         // 1. 获取请求参数
         String code = req.getParameter("code");
-        User user = WebUtil.injectParamToBean(req.getParameterMap(), new User());
+        User user = WebUtils.injectParamToBean(req.getParameterMap(), new User());
         String username = user.getUsername();
         String password = user.getPassword();
         String email = user.getEmail();

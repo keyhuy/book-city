@@ -5,7 +5,7 @@ import com.key.dao.inter.BookDao;
 import com.key.entity.Book;
 import com.key.entity.Page;
 import com.key.service.inter.BookService;
-import com.key.utils.WebUtil;
+import com.key.util.WebUtils;
 
 import java.util.List;
 
@@ -85,7 +85,7 @@ public class BookServiceImpl implements BookService {
              3. 对当前页码进行校验，获取合法值
                必须在查询每页信息前以及在即计算出总页码后，进行校验，不然查出的信息会出错
         */
-        int legalCurrPage = WebUtil.getLegalPage(currentPage, totalPage);
+        int legalCurrPage = WebUtils.getLegalPage(currentPage, totalPage);
 
         // 4. 调用dao类方法，查询出每页信息
         // 4.1 先算出初始页码，用合法的当前页码进行计算
@@ -113,7 +113,7 @@ public class BookServiceImpl implements BookService {
         int totalPage = totalCount / pageSize + (totalCount % pageSize == 0 ? 0 : 1);
 
         // 3. 根据总页码，获取合法的当前页码
-        int legalCurrPage = WebUtil.getLegalPage(currPage, totalPage);
+        int legalCurrPage = WebUtils.getLegalPage(currPage, totalPage);
 
         // 4. 获取每页显示的数据
         int beginPage = (legalCurrPage - 1) * pageSize;
